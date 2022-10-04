@@ -24,9 +24,7 @@ namespace WebApplication1.Controllers
         public IncidentsController(TaskDbContext context, IIncidentService incedentService,IUnitOfWork unitOfWork)
         {
             _context = context;
- 
-            _incedentService = incedentService;
-            
+            _incedentService = incedentService;   
         }
 
         // GET: api/Incidents

@@ -19,7 +19,6 @@ namespace WebApplication1.BLL.ContactService
            
         }
 
-
         public async Task<int> CreateContactAsync(Contact incidentdto)
         {
           return  await _unitOfWork.contactRepository.Add(incidentdto);

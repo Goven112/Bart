@@ -24,10 +24,8 @@ namespace WebApplication1.Repositories
         public async Task<string> Add(Incident incident)
         {
             var newIncident = await taskDbContext.Incidents.AddAsync(incident);
-
-           
-                return newIncident.Entity.Name;
             
+            return newIncident.Entity.Name;
         }
 
 
@@ -54,11 +52,6 @@ namespace WebApplication1.Repositories
         {
             var account = taskDbContext.Set<Account>().FirstOrDefault(p=>p.Name == incidentdto.AccontName);
 
-          //  var account = await taskDbContext.Accounts.FindAsync(incidentdto.AccontName);
-
-
-           // var contact = await taskDbContext.Contacts.FindAsync(incidentdto.Email);
-
             var contact = taskDbContext.Set<Contact>().FirstOrDefault(p => p.Email == incidentdto.Email);
 
             if (account == null)
@@ -68,7 +61,6 @@ namespace WebApplication1.Repositories
 
             if (contact != null)
             {
-
                 contact.First_Name = incidentdto.FirstNameContact;
 
                 contact.Last_Name = incidentdto.LastNameContact;
@@ -84,7 +76,6 @@ namespace WebApplication1.Repositories
             }
             else
             {
-          
                 var newContact = new Contact() { First_Name = incidentdto.FirstNameContact, Last_Name = incidentdto.LastNameContact, Email = incidentdto.Email, AccountId = account.Id };
 
                 await taskDbContext.Contacts.AddAsync(newContact);
@@ -92,7 +83,6 @@ namespace WebApplication1.Repositories
                 var nameIncident = await Add(incident);
 
                 account.IncidentId = nameIncident;
-
             }
 
             await taskDbContext.SaveChangesAsync();
@@ -100,19 +90,11 @@ namespace WebApplication1.Repositories
             return true;
 
         }
-
-
-       
-
-
         public async Task<bool> DeleteById(string id)
         {
             var incident = await taskDbContext.Incidents.FindAsync(id);
-          
-
-           var incidentTrack = taskDbContext.Incidents.Remove(incident);
-           
-
+            
+            var incidentTrack = taskDbContext.Incidents.Remove(incident);
 
             if (incidentTrack == null)
             {

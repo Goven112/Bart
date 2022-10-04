@@ -18,21 +18,16 @@ namespace WebApplication1.Repositories
         }
         public async Task<int> Add(Contact contact)
         {
-
             var account = await taskDbContext.Contacts.AddAsync(contact);
+            
             return account.Entity.Id;
-
         }
-
         public  async Task Update(Contact contact)
         {
-             taskDbContext.Contacts.Update(contact);
+            taskDbContext.Contacts.Update(contact);
 
             await taskDbContext.SaveChangesAsync();
-
         }
-
-
 
         public async Task<Contact> FindContactByEmail(string contactEmail)
         {
@@ -46,7 +41,6 @@ namespace WebApplication1.Repositories
             return contactCheck;
 
         }
-
         public async Task<IEnumerable<Contact>> GetContacts()
         {
             return await taskDbContext.Contacts.ToListAsync();

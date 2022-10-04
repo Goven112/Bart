@@ -13,7 +13,6 @@ namespace WebApplication1
         {
             this.dc = dc;
         }
-
         public IAccountRepository accountRepository => new AccountRepository(dc);
 
         public IIncidentRepository incidentRepository => new IncidentRepository(dc);

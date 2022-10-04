@@ -11,11 +11,8 @@ namespace WebApplication1.Model
         {
 
         }
-
         public DbSet<Incident>  Incidents { get; set; }
-
         public DbSet<Account>  Accounts { get; set; }
-
         public DbSet<Contact> Contacts   { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -49,8 +46,6 @@ namespace WebApplication1.Model
                     .WithMany(a => a.Contacts)
                     .HasForeignKey(c => c.AccountId);
             });
-
-
 
         }
 

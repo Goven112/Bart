@@ -8,7 +8,6 @@ namespace WebApplication1.Interfaces
 {
     public interface IIncidentRepository
     {
-
         Task<string> Add(Incident task);
         Task<ActionResult<IEnumerable<Incident>>> GetIncidentst();
         Task<bool> CreateIncidentAsync(IncidentDto incidentdto, Incident incident);
