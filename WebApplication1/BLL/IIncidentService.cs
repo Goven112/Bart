@@ -12,5 +12,6 @@ namespace WebApplication1.BLL
         Task<bool> DeleteById(string id);
         Task<ActionResult<IEnumerable<Incident>>> GetIncidentst();
         Task<ActionResult<Incident>> FindAccountByName(string accountName);
+        bool IncidentExists(string id);
     }
 }

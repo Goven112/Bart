@@ -13,5 +13,6 @@ namespace WebApplication1.Interfaces
         Task<bool> CreateIncidentAsync(IncidentDto incidentdto, Incident incident);
         Task<Incident> FindAccountByName(string accountName);
         Task<bool> DeleteById(string id);
+        bool IncidentExists(string id);
     }
 }

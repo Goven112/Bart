@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.BLL;
@@ -37,10 +38,18 @@ namespace WebApplication1
 
             services.AddControllers();
 
-            string connectionString = "Server=(localdb)\\mssqllocaldb;Database=DBJOB;Trusted_Connection=True;";
+            var builder = new ConfigurationBuilder();
+         
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+          
+            builder.AddJsonFile("appsettings.json");
+           
+            var config = builder.Build();
+           
+            string connectionString = config.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<TaskDbContext>(options => options.UseSqlServer(connectionString));
-         
+    
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IIncidentService, IncidentService>();

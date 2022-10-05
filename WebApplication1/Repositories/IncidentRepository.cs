@@ -47,7 +47,6 @@ namespace WebApplication1.Repositories
 
         }
 
-
         public async Task<bool> CreateIncidentAsync(IncidentDto incidentdto, Incident incident)
         {
             var account = taskDbContext.Set<Account>().FirstOrDefault(p=>p.Name == incidentdto.AccontName);
@@ -104,6 +103,9 @@ namespace WebApplication1.Repositories
             
             return true;
         }
-
+        public bool IncidentExists(string id)
+        {
+            return taskDbContext.Incidents.Any(e => e.Name == id);
+        }
     }
 }

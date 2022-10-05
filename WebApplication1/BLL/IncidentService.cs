@@ -40,6 +40,10 @@ namespace WebApplication1.BLL
         {
           return  await _unitOfWork.incidentRepository.FindAccountByName(accountName);
         }
-
+    
+        public bool IncidentExists (string id)
+        {
+            return _unitOfWork.incidentRepository.IncidentExists(id);
+        }
     }
 }

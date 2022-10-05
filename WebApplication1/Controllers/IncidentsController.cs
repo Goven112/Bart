@@ -32,7 +32,6 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult<IEnumerable<Incident>>> GetIncidents()
         {
             return await _incedentService.GetIncidentst();
-            
         }
 
         // GET: api/Incidents/5
@@ -67,7 +66,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!IncidentExists(id))
+                if (!_incedentService.IncidentExists(id))
                 {
                     return NotFound();
                 }
@@ -76,7 +75,6 @@ namespace WebApplication1.Controllers
                     throw;
                 }
             }
-
             return NoContent();
         }
 
@@ -85,12 +83,10 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult> PostIncident(IncidentDto incidentdto)
         {
-            
             if(await _incedentService.CreateIncidentAsync(incidentdto) == false)
             {
                 return NotFound();
             }
-
             return Ok();
         }
 
@@ -99,17 +95,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> DeleteIncident(string id)
         {
             await _incedentService.DeleteById(id);
-
-
-            
-          
-
             return NoContent();
-        }
-
-        private bool IncidentExists(string id)
-        {
-            return _context.Incidents.Any(e => e.Name == id);
         }
     }
 }
